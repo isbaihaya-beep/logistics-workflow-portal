@@ -1,0 +1,27 @@
+
+{% extends "layout.html" %}
+{% block content %}
+<h2>Customer Status View</h2>
+<p>This page shows only the sample records assigned to the logged-in customer.</p>
+<div class="row">
+{% for order in orders %}
+  <div class="col-md-4">
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5>{{ order.order_number }}</h5>
+        <p>Status: <strong>{{ order.status }}</strong></p>
+        <p>Document status: <strong>{{ order.document_status }}</strong></p>
+        <p>Delay reason: {{ order.delay_reason }}</p>
+        <form method="post">
+          <input type="hidden" name="order_id" value="{{ order.id }}">
+          <textarea class="form-control mb-2" name="message" placeholder="Submit a request or dispute note" required></textarea>
+          <button class="btn btn-sm btn-primary">Submit Request</button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+</div>
+<h4>Request History</h4>
+<table class="table table-bordered bg-white"><tr><th>Order</th><th>Message</th><th>Status</th><th>Created</th></tr>{% for r in requests_list %}<tr><td>{{ r.order_number }}</td><td>{{ r.message }}</td><td>{{ r.status }}</td><td>{{ r.created_at }}</td></tr>{% endfor %}</table>
+{% endblock %}

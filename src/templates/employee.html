@@ -1,0 +1,20 @@
+
+{% extends "layout.html" %}
+{% block content %}
+<h2>Employee Workflow Updates</h2>
+<p>Employees update records, document readiness, and delay reasons.</p>
+<table class="table table-bordered bg-white">
+<tr><th>Order</th><th>Status</th><th>Document</th><th>Delay Reason</th><th>Update</th></tr>
+{% for order in orders %}
+<tr>
+  <form method="post">
+  <td>{{ order.order_number }}<input type="hidden" name="order_id" value="{{ order.id }}"></td>
+  <td><select class="form-select" name="status"><option>Pending</option><option>In Progress</option><option>Delayed</option><option>Completed</option></select></td>
+  <td><select class="form-select" name="document_status"><option>Received</option><option>Missing</option></select></td>
+  <td><input class="form-control" name="delay_reason" value="{{ order.delay_reason }}"></td>
+  <td><button class="btn btn-sm btn-success">Save</button></td>
+  </form>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}
