@@ -1,0 +1,4 @@
+order_number,status,document_status,delay_reason
+ORD-1001,Pending,Missing,Waiting on bill of lading
+ORD-1002,In Progress,Received,None
+ORD-1003,Delayed,Missing,Waiting on customer confirmation
